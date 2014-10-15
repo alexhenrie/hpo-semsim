@@ -1,4 +1,5 @@
 #!/bin/sh
+#Perform comparisons between individuals with Noonan syndrome
 
 ./data-to-annotations.py noonan_data.csv > instance_annots.tsv
 
@@ -11,5 +12,5 @@ for i in `seq 1 $instance_count`; do
     done
 done
 
-java -jar sml-toolkit-0.9.jar -t sm -xmlconf sml-xmlconf-hpo.xml
+java -jar ../sml-toolkit-0.9.jar -t sm -xmlconf sml-xmlconf-hpo.xml
 cat output.tsv

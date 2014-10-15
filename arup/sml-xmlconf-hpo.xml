@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sglib>
+    <opt threads="1" />
+
+    <namespaces>
+        <nm prefix="HP" ref="http://purl.obolibrary.org/obo/hp.owl#HP_" />
+    </namespaces>
+
+    <graphs>
+        <graph uri="http://bio/">
+            <data>
+                <file format="OBO" path="../hp.obo" />
+                <file format="TSV_ANNOT" path="instance_annots.tsv" prefixSubject="http://bio/" header="false" />
+            </data>
+            <actions>
+                <action type="VERTICES_REDUCTION" root_uri="http://purl.obolibrary.org/obo/hp.owl#HP_0000001" />
+                <action type="TRANSITIVE_REDUCTION" target="CLASSES" />
+            </actions>
+        </graph>
+    </graphs>
+
+    <sml module="sm" graph="http://bio/">
+        <opt_module threads="1" />
+        <measures type="groupwise">
+            <measure id="jaccard" flag="SIM_FRAMEWORK_DAG_SET_JACCARD_1901" />
+        </measures>
+        <queries id="query" type="oTOo" file="input_queries.tsv" output="output.tsv" noAnnots="set=-1" notFound="exclude" output_basename="false" uri_prefix="http://bio/" />
+    </sml>
+</sglib>

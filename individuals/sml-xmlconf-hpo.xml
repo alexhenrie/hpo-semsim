@@ -9,7 +9,7 @@
     <graphs>
         <graph uri="http://bio/">
             <data>
-                <file format="OBO" path="hp.obo" />
+                <file format="OBO" path="../hp.obo" />
                 <file format="TSV_ANNOT" path="instance_annots.tsv" prefixSubject="http://bio/" header="false" />
             </data>
             <actions>
