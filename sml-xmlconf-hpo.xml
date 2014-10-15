@@ -29,6 +29,6 @@
             <measure id="lee" flag="SIM_GROUPWISE_DAG_LEE_2004" />
             <measure id="ali_and_deane" flag="SIM_GROUPWISE_DAG_ALI_DEANE" />
         </measures>
-        <queries id="query" type="oTOo" file="input_queries.tsv" output="output.txt" noAnnots="set=-1" notFound="exclude" output_basename="false" uri_prefix="http://bio/" />
+        <queries id="query" type="oTOo" file="input_queries.tsv" output="output.tsv" noAnnots="set=-1" notFound="exclude" output_basename="false" uri_prefix="http://bio/" />
     </sml>
 </sglib>
