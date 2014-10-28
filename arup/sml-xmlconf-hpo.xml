@@ -21,8 +21,36 @@
 
     <sml module="sm" graph="http://bio/">
         <opt_module threads="1" />
+        <ics>
+            <ic id="sanchez" flag="ICI_SANCHEZ_2011" />
+            <ic id="seco" flag="ICI_SECO_2004" />
+            <ic id="zhou" flag="ICI_ZHOU_2008" />
+            <ic id="depth_max_non_linear" flag="ICI_DEPTH_MAX_NONLINEAR" />
+            <ic id="depth_min_non_linear" flag="ICI_DEPTH_MIN_NONLINEAR" />
+        </ics>
         <measures type="groupwise">
-            <measure id="jaccard" flag="SIM_FRAMEWORK_DAG_SET_JACCARD_1901" />
+            <measure id="simui" flag="SIM_GROUPWISE_DAG_UI" />
+            <measure id="blanquet" flag="SIM_FRAMEWORK_DAG_SET_BRAUN_BLANQUET_1932" />
+            <measure id="dice" flag="SIM_FRAMEWORK_DAG_SET_DICE_1945" />
+            <measure id="ochiai" flag="SIM_FRAMEWORK_DAG_SET_OCHIAI_1957" />
+            <measure id="simpson" flag="SIM_FRAMEWORK_DAG_SET_SIMPSON_1960" />
+            <measure id="sokal" flag="SIM_FRAMEWORK_DAG_SET_SOKAL_SNEATH_1963" />
+            <measure id="tversky" flag="SIM_FRAMEWORK_DAG_SET_TVERSKY_1977" />
+            <measure id="korbel" flag="SIM_FRAMEWORK_DAG_SET_KORBEL_2002" />
+            <measure id="maryland" flag="SIM_FRAMEWORK_DAG_SET_MARYLAND_BRIDGE_2003" />
+            <measure id="bader" flag="SIM_FRAMEWORK_DAG_SET_BADER_2003" />
+            <measure id="knappe" flag="SIM_FRAMEWORK_DAG_SET_KNAPPE_2004" />
+            <measure id="batet" flag="SIM_FRAMEWORK_DAG_SET_BATET_2010" />
+            <measure id="ali" flag="SIM_GROUPWISE_DAG_ALI_DEANE" />
+            <measure id="gic-sanchez" flag="SIM_GROUPWISE_DAG_GIC" ic="sanchez" />
+            <measure id="gic-seco" flag="SIM_GROUPWISE_DAG_GIC" ic="seco" />
+            <measure id="gic-depth_max_non_linear" flag="SIM_GROUPWISE_DAG_GIC" ic="depth_max_non_linear" />
+            <measure id="gic-depth_min_non_linear" flag="SIM_GROUPWISE_DAG_GIC" ic="depth_min_non_linear" />
+            <measure id="lp" flag="SIM_GROUPWISE_DAG_LP" />
+            <measure id="lee" flag="SIM_GROUPWISE_DAG_LEE_2004" />
+            <measure id="to" flag="SIM_GROUPWISE_DAG_TO" />
+            <measure id="nto" flag="SIM_GROUPWISE_DAG_NTO" />
+            <measure id="nto_max" flag="SIM_GROUPWISE_DAG_NTO_MAX" />
         </measures>
         <queries id="query" type="oTOo" file="input_queries.tsv" output="output.tsv" noAnnots="set=-1" notFound="exclude" output_basename="false" uri_prefix="http://bio/" />
     </sml>

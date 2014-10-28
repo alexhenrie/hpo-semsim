@@ -1,1 +1,15 @@
+lepri	medscape
+lepri	digilio
+lepri	arup
+lepri	mayo
+lepri	medgen
+medscape	digilio
+medscape	arup
+medscape	mayo
+medscape	medgen
+digilio	arup
+digilio	mayo
+digilio	medgen
+arup	mayo
 arup	medgen
+mayo	medgen
