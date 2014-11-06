@@ -10,7 +10,7 @@
         <graph uri="http://bio/">
             <data>
                 <file format="OBO" path="../hp.obo" />
-                <file format="TSV_ANNOT" path="instance_annots.tsv" prefixSubject="http://bio/" header="false" />
+                <file format="TSV_ANNOT" path="../instance_annots.tsv" prefixSubject="http://bio/" header="false" />
             </data>
             <actions>
                 <action type="VERTICES_REDUCTION" root_uri="http://purl.obolibrary.org/obo/hp.owl#HP_0000001" />
