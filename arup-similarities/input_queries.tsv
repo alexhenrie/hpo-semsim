@@ -13,3 +13,8 @@ digilio	medgen
 arup	mayo
 arup	medgen
 mayo	medgen
+top10	broader
+top10	narrower
+top10	subset
+top10	superset
+top10	mismatched
