@@ -23,6 +23,7 @@
         <opt_module threads="1" />
         <measures type="pairwise">
             <measure id="rada" flag="SIM_PAIRWISE_DAG_EDGE_RADA_1989" />
+            <measure id="eilbeck1" flag="SIM_PAIRWISE_DAG_EDGE_EILBECK1" />
         </measures>
         <measures type="groupwise">
             <measure id="avg" flag="SIM_GROUPWISE_AVERAGE" pairwise_measure="rada" />

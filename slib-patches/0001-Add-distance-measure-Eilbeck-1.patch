@@ -1,0 +1,149 @@
+From 40bbebb435e406e89e72a7845eee601b6304b594 Mon Sep 17 00:00:00 2001
+From: Alex Henrie <alexhenrie24@gmail.com>
+Date: Mon, 17 Nov 2014 20:37:51 -0700
+Subject: [PATCH] Add distance measure "Eilbeck 1"
+
+---
+ .../edge_based/Sim_pairwise_DAG_edge_Eilbeck1.java | 90 ++++++++++++++++++++++
+ .../java/slib/sml/sm/core/utils/SMConstants.java   |  7 ++
+ 2 files changed, 97 insertions(+)
+ create mode 100644 slib-sml/src/main/java/slib/sml/sm/core/measures/graph/pairwise/dag/edge_based/Sim_pairwise_DAG_edge_Eilbeck1.java
+
+diff --git a/slib-sml/src/main/java/slib/sml/sm/core/measures/graph/pairwise/dag/edge_based/Sim_pairwise_DAG_edge_Eilbeck1.java b/slib-sml/src/main/java/slib/sml/sm/core/measures/graph/pairwise/dag/edge_based/Sim_pairwise_DAG_edge_Eilbeck1.java
+new file mode 100644
+index 0000000..20f145f
+--- /dev/null
++++ b/slib-sml/src/main/java/slib/sml/sm/core/measures/graph/pairwise/dag/edge_based/Sim_pairwise_DAG_edge_Eilbeck1.java
+@@ -0,0 +1,90 @@
++/*
++ *  Copyright or © or Copr. Ecole des Mines d'Alès (2012-2014)
++ *
++ *  This software is a computer program whose purpose is to provide
++ *  several functionalities for the processing of semantic data
++ *  sources such as ontologies or text corpora.
++ *
++ *  This software is governed by the CeCILL  license under French law and
++ *  abiding by the rules of distribution of free software.  You can  use,
++ *  modify and/ or redistribute the software under the terms of the CeCILL
++ *  license as circulated by CEA, CNRS and INRIA at the following URL
++ *  "http://www.cecill.info".
++ *
++ *  As a counterpart to the access to the source code and  rights to copy,
++ *  modify and redistribute granted by the license, users are provided only
++ *  with a limited warranty  and the software's author,  the holder of the
++ *  economic rights,  and the successive licensors  have only  limited
++ *  liability.
++
++ *  In this respect, the user's attention is drawn to the risks associated
++ *  with loading,  using,  modifying and/or developing or reproducing the
++ *  software by the user in light of its specific status of free software,
++ *  that may mean  that it is complicated to manipulate,  and  that  also
++ *  therefore means  that it is reserved for developers  and  experienced
++ *  professionals having in-depth computer knowledge. Users are therefore
++ *  encouraged to load and test the software's suitability as regards their
++ *  requirements in conditions enabling the security of their systems and/or
++ *  data to be ensured and,  more generally, to use and operate it in the
++ *  same conditions as regards security.
++ *
++ *  The fact that you are presently reading this means that you have had
++ *  knowledge of the CeCILL license and that you accept its terms.
++ */
++package slib.sml.sm.core.measures.graph.pairwise.dag.edge_based;
++
++import java.util.Set;
++import org.openrdf.model.URI;
++import slib.graph.model.graph.weight.GWS;
++import slib.graph.model.impl.graph.weight.GWS_impl;
++import slib.sml.sm.core.engine.SM_Engine;
++import slib.sml.sm.core.utils.SMconf;
++import slib.utils.ex.SLIB_Exception;
++
++/**
++ * Eilbeck K, Henrie A (unpublished)
++ *
++ * Based on Dist_pairwise_DAG_edge_Rada_1989, this measure returns the shortest
++ * distance from the root to the node divided by that distance plus the length
++ * of the longest segment descending from the node.
++ */
++public class Sim_pairwise_DAG_edge_Eilbeck1 extends Sim_DAG_edge_abstract {
++
++    @Override
++    public double compare(URI a, URI b, SM_Engine c, SMconf conf) throws SLIB_Exception {
++        assert(a.toString().equals("HP:0000001"));
++
++        GWS weightingScheme;
++        if (conf.getParamAsString("WEIGHTING_SCHEME") == null) {
++            weightingScheme = new GWS_impl(1);
++        } else {
++            weightingScheme = c.getWeightingScheme(conf.getParamAsString("WEIGHTING_SCHEME"));
++        }
++
++        double ab = c.getShortestPath(a, b, weightingScheme);
++        return ab / (ab + getMaxDepth(b, c));
++    }
++
++    @Override
++    public Boolean isSymmetric() {
++        // Depends on the symmetry of the weighting scheme
++        return null;
++    }
++
++    private int getMaxDepth(URI b, SM_Engine c) {
++        Set<URI> descendents = c.getDescendantsInc(b);
++        if (descendents.size() == 1) {
++            return 0;
++        } else {
++            int maxDepth = 0;
++            for (URI d : descendents) {
++                if (d != b) {
++                    int maxDepthD = getMaxDepth(d, c);
++                    if (maxDepthD > maxDepth)
++                        maxDepth = maxDepthD;
++                }
++            }
++            return 1 + maxDepth;
++        }
++    }
++}
+diff --git a/slib-sml/src/main/java/slib/sml/sm/core/utils/SMConstants.java b/slib-sml/src/main/java/slib/sml/sm/core/utils/SMConstants.java
+index 42d41a1..3c2a4db 100755
+--- a/slib-sml/src/main/java/slib/sml/sm/core/utils/SMConstants.java
++++ b/slib-sml/src/main/java/slib/sml/sm/core/utils/SMConstants.java
+@@ -56,6 +56,7 @@ import slib.sml.sm.core.measures.graph.groupwise.dag.Sim_groupwise_DAG_NTO_MAX;
+ import slib.sml.sm.core.measures.graph.groupwise.dag.Sim_groupwise_DAG_NTO;
+ import slib.sml.sm.core.measures.graph.groupwise.dag.Sim_groupwise_DAG_TO;
+ import slib.sml.sm.core.measures.graph.groupwise.dag.Sim_groupwise_DAG_UI;
++import slib.sml.sm.core.measures.graph.pairwise.dag.edge_based.Sim_pairwise_DAG_edge_Eilbeck1;
+ import slib.sml.sm.core.measures.graph.pairwise.dag.edge_based.Sim_pairwise_DAG_edge_Kyogoku_basic_2011;
+ import slib.sml.sm.core.measures.graph.pairwise.dag.edge_based.Sim_pairwise_DAG_edge_Leacock_Chodorow_1998;
+ import slib.sml.sm.core.measures.graph.pairwise.dag.hybrid.experimental.Sim_pairwise_DAG_edge_Li_2003;
+@@ -463,6 +464,10 @@ public final class SMConstants {
+     /**
+      *
+      */
++    public static final String SIM_PAIRWISE_DAG_EDGE_EILBECK1 = Sim_pairwise_DAG_edge_Eilbeck1.class.getName();
++    /**
++     *
++     */
+     public static final String SIM_PAIRWISE_DAG_EDGE_KYOGOKU_BASIC_2011 = Sim_pairwise_DAG_edge_Kyogoku_basic_2011.class.getName();
+     /**
+      *
+@@ -504,6 +509,7 @@ public final class SMConstants {
+     
+     
+     
++    public static final String FLAG_SIM_PAIRWISE_DAG_EDGE_EILBECK1 = "SIM_PAIRWISE_DAG_EDGE_EILBECK1";
+      public static final String FLAG_SIM_PAIRWISE_DAG_EDGE_KYOGOKU_BASIC_2011 = "SIM_PAIRWISE_DAG_EDGE_KYOGOKU_BASIC_2011";
+     /**
+      *
+@@ -548,6 +554,7 @@ public final class SMConstants {
+         private static final long serialVersionUID = 1L;
+ 
+         {
++            put(FLAG_SIM_PAIRWISE_DAG_EDGE_EILBECK1, SIM_PAIRWISE_DAG_EDGE_EILBECK1);
+             put(FLAG_SIM_PAIRWISE_DAG_EDGE_KYOGOKU_BASIC_2011, SIM_PAIRWISE_DAG_EDGE_KYOGOKU_BASIC_2011);
+             put(FLAG_SIM_PAIRWISE_DAG_EDGE_LEACOCK_CHODOROW_1998, SIM_PAIRWISE_DAG_EDGE_LEACOCK_CHODOROW_1998);
+             put(FLAG_SIM_PAIRWISE_DAG_EDGE_LI_2003, SIM_PAIRWISE_DAG_EDGE_LI_2003);
+-- 
+2.1.3
+
