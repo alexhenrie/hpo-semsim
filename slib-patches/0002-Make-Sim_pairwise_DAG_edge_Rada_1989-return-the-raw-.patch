@@ -1,0 +1,26 @@
+From d33bebf2f1d0590972ef3e7556a3ceb7a842a6d9 Mon Sep 17 00:00:00 2001
+From: Alex Henrie <alexhenrie24@gmail.com>
+Date: Wed, 19 Nov 2014 16:19:56 -0700
+Subject: [PATCH 2/2] Make Sim_pairwise_DAG_edge_Rada_1989 return the raw
+ distance
+
+---
+ .../graph/pairwise/dag/edge_based/Sim_pairwise_DAG_edge_Rada_1989.java  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/slib-sml/src/main/java/slib/sml/sm/core/measures/graph/pairwise/dag/edge_based/Sim_pairwise_DAG_edge_Rada_1989.java b/slib-sml/src/main/java/slib/sml/sm/core/measures/graph/pairwise/dag/edge_based/Sim_pairwise_DAG_edge_Rada_1989.java
+index 14c64dc..ef633c7 100755
+--- a/slib-sml/src/main/java/slib/sml/sm/core/measures/graph/pairwise/dag/edge_based/Sim_pairwise_DAG_edge_Rada_1989.java
++++ b/slib-sml/src/main/java/slib/sml/sm/core/measures/graph/pairwise/dag/edge_based/Sim_pairwise_DAG_edge_Rada_1989.java
+@@ -63,7 +63,7 @@ public class Sim_pairwise_DAG_edge_Rada_1989 extends Sim_DAG_edge_abstract {
+         }
+ 
+         double sp = c.getShortestPath(a, b, weightingScheme);
+-        return sim(sp);
++        return sp;
+     }
+ 
+     /**
+-- 
+2.1.3
+

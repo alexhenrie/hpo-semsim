@@ -10,7 +10,7 @@
         <graph uri="http://bio/">
             <data>
                 <file format="OBO" path="../hp.obo" />
-                <file format="TSV_ANNOT" path="../instance_annots.tsv" prefixSubject="http://bio/" header="false" />
+                <file format="TSV_ANNOT" path="instance_annots.tsv" prefixSubject="http://bio/" header="false" />
             </data>
             <actions>
                 <action type="VERTICES_REDUCTION" root_uri="http://purl.obolibrary.org/obo/hp.owl#HP_0000001" />
@@ -23,10 +23,13 @@
         <opt_module threads="1" />
         <measures type="pairwise">
             <measure id="rada" flag="SIM_PAIRWISE_DAG_EDGE_RADA_1989" />
+            <measure id="kyogoku" flag="SIM_PAIRWISE_DAG_EDGE_KYOGOKU_BASIC_2011" />
             <measure id="eilbeck1" flag="SIM_PAIRWISE_DAG_EDGE_EILBECK1" />
         </measures>
         <measures type="groupwise">
-            <measure id="avg" flag="SIM_GROUPWISE_AVERAGE" pairwise_measure="rada" />
+            <measure id="rada_avg" flag="SIM_GROUPWISE_AVERAGE" pairwise_measure="rada" />
+            <measure id="kyogoku_avg" flag="SIM_GROUPWISE_AVERAGE" pairwise_measure="kyogoku" />
+            <measure id="eilbeck1_avg" flag="SIM_GROUPWISE_AVERAGE" pairwise_measure="eilbeck1" />
         </measures>
         <queries id="query" type="oTOo" file="input_queries.tsv" output="output.tsv" noAnnots="set=-1" notFound="exclude" output_basename="false" uri_prefix="http://bio/" />
     </sml>
