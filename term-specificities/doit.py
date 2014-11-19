@@ -30,6 +30,7 @@ for line in open('../set_instance_annots.tsv'):
 
 os.remove('instance_annots.tsv')
 os.remove('input_queries.tsv')
-output_file = open('output.tsv', 'w')
+os.remove('output.tsv')
+output_file = open('term-specificities.tsv', 'w')
 output_file.write(total_output)
 print(total_output)

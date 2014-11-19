@@ -1,3 +1,3 @@
 #!/bin/sh
 java -jar ../slib/slib-tools/slib-tools-sml-toolkit/target/sml-toolkit-latest.jar -t sm -xmlconf sml-xmlconf-hpo.xml
-cat output.tsv
+cat set-similarities.tsv
