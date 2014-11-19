@@ -1,5 +1,7 @@
 #!/bin/sh
 
+wget http://purl.obolibrary.org/obo/hp.obo -O hp.obo
+
 if [ ! -d slib ]; then
     git clone https://github.com/sharispe/slib.git
     cd slib
