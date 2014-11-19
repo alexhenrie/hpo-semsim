@@ -1,18 +1,33 @@
-lepri	medscape
-lepri	digilio
-lepri	arup
-lepri	mayo
-lepri	medgen
-medscape	digilio
-medscape	arup
-medscape	mayo
-medscape	medgen
-digilio	arup
-digilio	mayo
-digilio	medgen
+gold	arup
+gold	mayo
+gold	medgen
+gold	medscape
+gold	lepri
+gold	digilio
+
+top10	arup
+top10	mayo
+top10	medgen
+top10	medscape
+top10	lepri
+top10	digilio
+
 arup	mayo
 arup	medgen
+arup	medscape
+arup	lepri
+arup	digilio
 mayo	medgen
+mayo	medscape
+mayo	lepri
+mayo	digilio
+medgen	medscape
+medgen	lepri
+medgen	digilio
+medscape	lepri
+medscape	digilio
+digilio	lepri
+
 top10	broader
 top10	narrower
 top10	subset
