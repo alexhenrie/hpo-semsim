@@ -52,6 +52,6 @@
             <measure id="nto" flag="SIM_GROUPWISE_DAG_NTO" />
             <measure id="nto_max" flag="SIM_GROUPWISE_DAG_NTO_MAX" />
         </measures>
-        <queries id="query" type="oTOo" file="input_queries.tsv" output="set-similarities.tsv" noAnnots="set=-1" notFound="exclude" output_basename="false" uri_prefix="http://bio/" />
+        <queries id="query" type="oTOo" file="input_queries.tsv" output="set-to-set-similarities.tsv" noAnnots="set=-1" notFound="exclude" output_basename="false" uri_prefix="http://bio/" />
     </sml>
 </sglib>
