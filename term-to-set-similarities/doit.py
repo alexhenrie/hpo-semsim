@@ -4,12 +4,16 @@
 import os
 import re
 import subprocess
+import sys
+
+sys.path.append('..')
+from hpo import hpo_terms
 
 #define which sets we care about
 set_names = ['gold', 'top10', 'medgen', 'arup', 'mayo', 'hcm-concise', 'omim']
 
 #write the header
-total_output = '\tbest term-to-term simui\nterm'
+total_output = '\t\tbest term-to-term simui\nterm id\tterm name'
 for set_name in set_names:
     total_output += '\t' + set_name
 total_output += '\n'
@@ -53,7 +57,7 @@ for term in term_sets['all']:
 
         scores[set_name] = best_score
 
-    total_output += term
+    total_output += term + '\t' + hpo_terms[term]['name']
     for set_name in set_names:
         total_output += '\t' + str(scores[set_name])
     total_output += '\n'
