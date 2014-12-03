@@ -43,17 +43,20 @@ annots_file.close()
 for term in term_sets['all']:
     scores = dict()
     for set_name in set_names:
-        queries_file = open('input_queries.tsv', 'w')
-        for set_term in term_sets[set_name]:
-            queries_file.write(term.replace(':', '') + '\t' + set_term.replace(':', '') + '\n')
-        queries_file.close()
-        subprocess.call('java -jar ../slib/slib-tools/slib-tools-sml-toolkit/target/sml-toolkit-latest.jar -t sm -xmlconf sml-xmlconf-hpo.xml', shell=True)
+        if term in term_sets[set_name]:
+            best_score = 1
+        else:
+            queries_file = open('input_queries.tsv', 'w')
+            for set_term in term_sets[set_name]:
+                queries_file.write(term.replace(':', '') + '\t' + set_term.replace(':', '') + '\n')
+            queries_file.close()
+            subprocess.call('java -jar ../slib/slib-tools/slib-tools-sml-toolkit/target/sml-toolkit-latest.jar -t sm -xmlconf sml-xmlconf-hpo.xml', shell=True)
 
-        best_score = 0;
-        for match in re.finditer(r'\t([0-9.]+)', open('output.tsv').read()):
-            score = float(match.group(1))
-            if score > best_score:
-                best_score = score
+            best_score = 0;
+            for match in re.finditer(r'\t([0-9.]+)', open('output.tsv').read()):
+                score = float(match.group(1))
+                if score > best_score:
+                    best_score = score
 
         scores[set_name] = best_score
 
