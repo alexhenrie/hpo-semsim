@@ -6,7 +6,7 @@ import re
 import subprocess
 
 #define which sets we care about
-set_names = ['gold', 'medgen', 'arup', 'mayo']
+set_names = ['gold', 'top10', 'medgen', 'arup', 'mayo', 'hcm-concise', 'omim']
 
 #write the header
 total_output = '\tbest term-to-term simui\nterm'
