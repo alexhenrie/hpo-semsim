@@ -23,7 +23,7 @@ for line in open('../set_instance_annots.tsv'):
         queries_file.write('root\t' + term.replace(':', '') + '\n')
     queries_file.close()
 
-    subprocess.call('java -jar ../slib/slib-tools/slib-tools-sml-toolkit/target/sml-toolkit-latest.jar -t sm -xmlconf sml-xmlconf-hpo.xml', shell=True)
+    subprocess.call('java -jar ../sml-toolkit-latest.jar -t sm -xmlconf sml-xmlconf-hpo.xml', shell=True)
     output_file_contents = open('output.tsv').read()
     total_output += cells[0] + '\n'
     total_output += output_file_contents[output_file_contents.index('\n') + 1:]

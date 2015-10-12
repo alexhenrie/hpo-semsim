@@ -11,3 +11,5 @@ else
     git pull --rebase
 fi
 mvn package
+cd ..
+ln -sf slib/slib-tools/slib-tools-sml-toolkit/target/sml-toolkit-latest.jar sml-toolkit-latest.jar

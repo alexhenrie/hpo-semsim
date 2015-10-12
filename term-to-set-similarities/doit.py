@@ -50,7 +50,7 @@ for term in term_sets['all']:
             for set_term in term_sets[set_name]:
                 queries_file.write(term.replace(':', '') + '\t' + set_term.replace(':', '') + '\n')
             queries_file.close()
-            subprocess.call('java -jar ../slib/slib-tools/slib-tools-sml-toolkit/target/sml-toolkit-latest.jar -t sm -xmlconf sml-xmlconf-hpo.xml', shell=True)
+            subprocess.call('java -jar ../sml-toolkit-latest.jar -t sm -xmlconf sml-xmlconf-hpo.xml', shell=True)
 
             best_score = 0;
             for match in re.finditer(r'\t([0-9.]+)', open('output.tsv').read()):
