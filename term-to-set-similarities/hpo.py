@@ -6,7 +6,7 @@ import re
 hpo_terms = dict()
 term = None
 
-for line in open(os.path.dirname(__file__) + '/hp.obo'):
+for line in open(os.path.dirname(__file__) + '/../hp.obo'):
     if line == '[Term]\n':
         term = dict()
         continue

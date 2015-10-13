@@ -2,10 +2,17 @@
 
 import os
 import subprocess
+import sys
+
+if len(sys.argv) == 1:
+    print('Please specify the folder that has the input files.')
+    exit(1)
+
+os.chdir(sys.argv[1])
 
 total_output = 'e1\te2\trada\tkyogoku\teilbeck1\n'
 
-for line in open('../set_instance_annots.tsv'):
+for line in open('set_instance_annots.tsv'):
     line = line.rstrip()
     cells = line.split('\t')
     if len(cells) == 1:
@@ -23,7 +30,7 @@ for line in open('../set_instance_annots.tsv'):
         queries_file.write('root\t' + term.replace(':', '') + '\n')
     queries_file.close()
 
-    subprocess.call('java -jar ../sml-toolkit-latest.jar -t sm -xmlconf sml-xmlconf-hpo.xml', shell=True)
+    subprocess.call('java -jar ../../sml-toolkit-latest.jar -t sm -xmlconf ../sml-xmlconf-hpo.xml', shell=True)
     output_file_contents = open('output.tsv').read()
     total_output += cells[0] + '\n'
     total_output += output_file_contents[output_file_contents.index('\n') + 1:]

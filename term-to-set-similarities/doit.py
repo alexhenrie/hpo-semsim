@@ -1,27 +1,22 @@
 #!/bin/python3
-#compares all interesting terms to each set, returning the best SimUI score between the term and each of the terms in the set
 
 import os
 import re
 import subprocess
 import sys
 
-sys.path.append('..')
 from hpo import hpo_terms
 
-#define which sets we care about
-set_names = ['gold', 'top10', 'medgen', 'arup', 'mayo', 'hcm-concise', 'omim']
+if len(sys.argv) == 1:
+    print('Please specify the folder that has the input files.')
+    exit(1)
 
-#write the header
-total_output = '\t\tbest term-to-term simui\nterm id\tterm name'
-for set_name in set_names:
-    total_output += '\t' + set_name
-total_output += '\n'
+os.chdir(sys.argv[1])
 
 #parse the sets of terms
 term_sets = dict()
 term_sets['all'] = set()
-for line in open('../set_instance_annots.tsv'):
+for line in open('set_instance_annots.tsv'):
     line = line.rstrip()
     cells = line.split('\t')
     if len(cells) == 1:
@@ -29,12 +24,23 @@ for line in open('../set_instance_annots.tsv'):
     term_sets[cells[0]] = set(cells[1].split(';'))
     term_sets['all'] |= term_sets[cells[0]]
 
+
 #sort the set of all terms
 term_sets['all'] = sorted(list(term_sets['all']))
 
+#define which sets will appear in the output (every one except the 'all' set)
+set_names = list(term_sets.keys())
+set_names.remove('all')
+
+#write the header
+total_output = '\t\tbest term-to-term simui\nterm id\tterm name'
+for set_name in set_names:
+    total_output += '\t' + set_name
+total_output += '\n'
+
 #write an annotation file giving each term an ID
 annots_file = open('instance_annots.tsv', 'w')
-annots_file.write(open('../set_instance_annots.tsv').read() + '\n')
+annots_file.write(open('set_instance_annots.tsv').read() + '\n')
 for term in term_sets['all']:
     annots_file.write(term.replace(':', '') + '\t' + term + '\n')
 annots_file.close()
@@ -50,7 +56,7 @@ for term in term_sets['all']:
             for set_term in term_sets[set_name]:
                 queries_file.write(term.replace(':', '') + '\t' + set_term.replace(':', '') + '\n')
             queries_file.close()
-            subprocess.call('java -jar ../sml-toolkit-latest.jar -t sm -xmlconf sml-xmlconf-hpo.xml', shell=True)
+            subprocess.call('java -jar ../../sml-toolkit-latest.jar -t sm -xmlconf ../sml-xmlconf-hpo.xml', shell=True)
 
             best_score = 0;
             for match in re.finditer(r'\t([0-9.]+)', open('output.tsv').read()):

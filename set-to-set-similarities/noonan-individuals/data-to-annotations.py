@@ -1,14 +1,13 @@
 #!/usr/bin/python3
+#generates instance_annots.tsv and input_queries.tsv from noonan_data.csv
 
 import csv
 import sys
 
-if len(sys.argv) == 1:
-    print("Usage: data-to-annotations.py <input-file.csv>")
-    exit(-1)
-
-csvfile = open(sys.argv[1], 'r')
+csvfile = open('noonan_data.csv', 'r')
 reader = csv.reader(csvfile)
+annots_file = open('instance_annots.tsv', 'w')
+queries_file = open('input_queries.tsv', 'w')
 i = -1
 for row in reader:
     i += 1
@@ -51,4 +50,9 @@ for row in reader:
     if row[17] == '1':
         phenotypes.append('HP:0004322') #short stature
 
-    print('i' + str(i) + '\t' + ';'.join(phenotypes))
+    annots_file.write('i' + str(i) + '\t' + ';'.join(phenotypes) + '\n')
+
+#generate combinatorial list of comparisons to make
+for j in range(1, i + 1):
+    for k in range(j + 1, i + 1):
+        queries_file.write('i' + str(j) + '\t' + 'i' + str(k) + '\n')
