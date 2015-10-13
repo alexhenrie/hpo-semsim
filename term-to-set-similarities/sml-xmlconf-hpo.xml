@@ -23,6 +23,7 @@
         <opt_module threads="1" />
         <measures type="groupwise">
             <measure id="simui" flag="SIM_GROUPWISE_DAG_UI" />
+            <measure id="simui0" flag="SIM_GROUPWISE_DAG_UI_ZERO" />
         </measures>
         <queries id="query" type="oTOo" file="input_queries.tsv" output="output.tsv" noAnnots="set=-1" notFound="exclude" output_basename="false" uri_prefix="http://bio/" />
     </sml>

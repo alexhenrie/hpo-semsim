@@ -33,7 +33,12 @@ set_names = list(term_sets.keys())
 set_names.remove('all')
 
 #write the header
-total_output = '\t\tbest term-to-term simui\nterm id\tterm name'
+total_output = '\t\tbest term-to-term simui'
+for set_name in set_names:
+    total_output += '\t'
+total_output += 'best term-to-term simui0\nterm id\tterm name'
+for set_name in set_names:
+    total_output += '\t' + set_name
 for set_name in set_names:
     total_output += '\t' + set_name
 total_output += '\n'
@@ -47,10 +52,12 @@ annots_file.close()
 
 #compare the terms
 for term in term_sets['all']:
-    scores = dict()
+    simui_scores = dict()
+    simui0_scores = dict()
     for set_name in set_names:
         if term in term_sets[set_name]:
-            best_score = 1
+            best_simui = 1
+            best_simui0 = 1
         else:
             queries_file = open('input_queries.tsv', 'w')
             for set_term in term_sets[set_name]:
@@ -58,17 +65,24 @@ for term in term_sets['all']:
             queries_file.close()
             subprocess.call('java -jar ../../sml-toolkit-latest.jar -t sm -xmlconf ../sml-xmlconf-hpo.xml', shell=True)
 
-            best_score = 0;
-            for match in re.finditer(r'\t([0-9.]+)', open('output.tsv').read()):
+            best_simui = 0;
+            best_simui0 = 0;
+            for match in re.finditer(r'\t([0-9.]+)\t([0-9.]+)', open('output.tsv').read()):
                 score = float(match.group(1))
-                if score > best_score:
-                    best_score = score
+                if score > best_simui:
+                    best_simui = score
+                score = float(match.group(2))
+                if score > best_simui0:
+                    best_simui0 = score
 
-        scores[set_name] = best_score
+        simui_scores[set_name] = best_simui
+        simui0_scores[set_name] = best_simui0
 
     total_output += term + '\t' + hpo_terms[term]['name']
     for set_name in set_names:
-        total_output += '\t' + str(scores[set_name])
+        total_output += '\t' + str(simui_scores[set_name])
+    for set_name in set_names:
+        total_output += '\t' + str(simui0_scores[set_name])
     total_output += '\n'
 
 #clean up
