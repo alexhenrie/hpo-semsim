@@ -2,7 +2,6 @@
 #generates instance_annots.tsv and input_queries.tsv from noonan_data.csv
 
 import csv
-import sys
 
 csvfile = open('noonan_data.csv', 'r')
 reader = csv.reader(csvfile)
