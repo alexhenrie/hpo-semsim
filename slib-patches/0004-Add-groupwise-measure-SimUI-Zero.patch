@@ -1,7 +1,7 @@
-From 2c5d21927e470428377f252ce9a01d762e656f2f Mon Sep 17 00:00:00 2001
+From 37b2bceced2375fe1fbe294ff51deac538463e49 Mon Sep 17 00:00:00 2001
 From: Alex Henrie <alexhenrie24@gmail.com>
 Date: Mon, 12 Oct 2015 19:21:04 -0600
-Subject: [PATCH 3/3] Add groupwise measure "SimUI Zero"
+Subject: [PATCH 4/4] Add groupwise measure "SimUI Zero"
 
 ---
  .../groupwise/dag/Sim_groupwise_DAG_UI_Zero.java   | 67 ++++++++++++++++++++++
@@ -11,7 +11,7 @@ Subject: [PATCH 3/3] Add groupwise measure "SimUI Zero"
 
 diff --git a/slib-sml/src/main/java/slib/sml/sm/core/measures/graph/groupwise/dag/Sim_groupwise_DAG_UI_Zero.java b/slib-sml/src/main/java/slib/sml/sm/core/measures/graph/groupwise/dag/Sim_groupwise_DAG_UI_Zero.java
 new file mode 100755
-index 0000000..98d2f50
+index 00000000..98d2f50a
 --- /dev/null
 +++ b/slib-sml/src/main/java/slib/sml/sm/core/measures/graph/groupwise/dag/Sim_groupwise_DAG_UI_Zero.java
 @@ -0,0 +1,67 @@
@@ -83,7 +83,7 @@ index 0000000..98d2f50
 +    }
 +}
 diff --git a/slib-sml/src/main/java/slib/sml/sm/core/utils/SMConstants.java b/slib-sml/src/main/java/slib/sml/sm/core/utils/SMConstants.java
-index 49c9fa5..4b365fb 100755
+index c502f9e3..207e0aa2 100755
 --- a/slib-sml/src/main/java/slib/sml/sm/core/utils/SMConstants.java
 +++ b/slib-sml/src/main/java/slib/sml/sm/core/utils/SMConstants.java
 @@ -56,6 +56,7 @@ import slib.sml.sm.core.measures.graph.groupwise.dag.Sim_groupwise_DAG_NTO_MAX;
@@ -125,5 +125,5 @@ index 49c9fa5..4b365fb 100755
              put(FLAG_SIM_GROUPWISE_SVM, SIM_GROUPWISE_SVM); // TODO move groupwise standalone
              putAll(SIM_FRAMEWORK_DAG_SET_BASED);
 -- 
-2.6.1
+2.13.0
 

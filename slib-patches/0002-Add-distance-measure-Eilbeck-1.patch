@@ -1,7 +1,7 @@
-From 0040766b6c5ad631077c50bbdcf2eb439e660ad4 Mon Sep 17 00:00:00 2001
+From 925fe51855b2cdf3b7f2a2d4f6280762652e9666 Mon Sep 17 00:00:00 2001
 From: Alex Henrie <alexhenrie24@gmail.com>
 Date: Mon, 17 Nov 2014 20:37:51 -0700
-Subject: [PATCH 1/3] Add distance measure "Eilbeck 1"
+Subject: [PATCH 2/4] Add distance measure "Eilbeck 1"
 
 ---
  .../edge_based/Sim_pairwise_DAG_edge_Eilbeck1.java | 90 ++++++++++++++++++++++
@@ -11,7 +11,7 @@ Subject: [PATCH 1/3] Add distance measure "Eilbeck 1"
 
 diff --git a/slib-sml/src/main/java/slib/sml/sm/core/measures/graph/pairwise/dag/edge_based/Sim_pairwise_DAG_edge_Eilbeck1.java b/slib-sml/src/main/java/slib/sml/sm/core/measures/graph/pairwise/dag/edge_based/Sim_pairwise_DAG_edge_Eilbeck1.java
 new file mode 100644
-index 0000000..20f145f
+index 00000000..20f145f0
 --- /dev/null
 +++ b/slib-sml/src/main/java/slib/sml/sm/core/measures/graph/pairwise/dag/edge_based/Sim_pairwise_DAG_edge_Eilbeck1.java
 @@ -0,0 +1,90 @@
@@ -106,7 +106,7 @@ index 0000000..20f145f
 +    }
 +}
 diff --git a/slib-sml/src/main/java/slib/sml/sm/core/utils/SMConstants.java b/slib-sml/src/main/java/slib/sml/sm/core/utils/SMConstants.java
-index 3d3fa1e..49c9fa5 100755
+index a09f8f23..c502f9e3 100755
 --- a/slib-sml/src/main/java/slib/sml/sm/core/utils/SMConstants.java
 +++ b/slib-sml/src/main/java/slib/sml/sm/core/utils/SMConstants.java
 @@ -56,6 +56,7 @@ import slib.sml.sm.core.measures.graph.groupwise.dag.Sim_groupwise_DAG_NTO_MAX;
@@ -145,5 +145,5 @@ index 3d3fa1e..49c9fa5 100755
              put(FLAG_SIM_PAIRWISE_DAG_EDGE_LEACOCK_CHODOROW_1998, SIM_PAIRWISE_DAG_EDGE_LEACOCK_CHODOROW_1998);
              put(FLAG_SIM_PAIRWISE_DAG_EDGE_LI_2003, SIM_PAIRWISE_DAG_EDGE_LI_2003);
 -- 
-2.6.1
+2.13.0
 

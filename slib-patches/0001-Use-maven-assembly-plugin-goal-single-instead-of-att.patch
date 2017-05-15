@@ -1,0 +1,68 @@
+From b34d5f8d3603bef78293aa25b8df2077f3538172 Mon Sep 17 00:00:00 2001
+From: Alex Henrie <alexhenrie24@gmail.com>
+Date: Mon, 1 May 2017 16:23:15 -0600
+Subject: [PATCH 1/4] Use maven-assembly-plugin goal "single" instead of
+ "attached"
+
+---
+ slib-dsm/pom.xml                          | 4 ++--
+ slib-tools/slib-tools-ontofocus/pom.xml   | 2 +-
+ slib-tools/slib-tools-sml-toolkit/pom.xml | 4 ++--
+ 3 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/slib-dsm/pom.xml b/slib-dsm/pom.xml
+index 249cfc4b..2004ec4d 100644
+--- a/slib-dsm/pom.xml
++++ b/slib-dsm/pom.xml
+@@ -104,7 +104,7 @@
+                         <id>make-assembly-egs</id>
+                         <phase>package</phase><!-- append to the packaging phase. -->
+                         <goals>
+-                            <goal>attached</goal><!-- goals == mojos -->
++                            <goal>single</goal><!-- goals == mojos -->
+                         </goals>
+                     </execution>
+                 </executions>
+@@ -141,4 +141,4 @@
+ 
+     </build>
+ 
+-</project>
+\ No newline at end of file
++</project>
+diff --git a/slib-tools/slib-tools-ontofocus/pom.xml b/slib-tools/slib-tools-ontofocus/pom.xml
+index b2ae3349..129099ca 100755
+--- a/slib-tools/slib-tools-ontofocus/pom.xml
++++ b/slib-tools/slib-tools-ontofocus/pom.xml
+@@ -126,7 +126,7 @@
+                         <id>make-assembly-ontofocus</id><!-- this is used for inheritance merges -->
+                         <phase>package</phase><!-- append to the packaging phase. -->
+                         <goals>
+-                            <goal>attached</goal><!-- goals == mojos -->
++                            <goal>single</goal><!-- goals == mojos -->
+                         </goals>
+                     </execution>
+                 </executions>
+diff --git a/slib-tools/slib-tools-sml-toolkit/pom.xml b/slib-tools/slib-tools-sml-toolkit/pom.xml
+index a459ecad..23db0972 100755
+--- a/slib-tools/slib-tools-sml-toolkit/pom.xml
++++ b/slib-tools/slib-tools-sml-toolkit/pom.xml
+@@ -123,7 +123,7 @@
+                         <id>make-assembly-sml-toolkit</id><!-- this is used for inheritance merges -->
+                         <phase>package</phase><!-- append to the packaging phase. -->
+                         <goals>
+-                            <goal>attached</goal><!-- goals == mojos -->
++                            <goal>single</goal><!-- goals == mojos -->
+                         </goals>
+                     </execution>
+                 </executions>
+@@ -181,4 +181,4 @@
+ 
+     </build>
+ 
+-</project>
+\ No newline at end of file
++</project>
+-- 
+2.13.0
+
